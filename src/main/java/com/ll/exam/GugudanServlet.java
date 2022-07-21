@@ -29,35 +29,3 @@ public class GugudanServlet extends HttpServlet {
     }
 }
 
-class Rq{
-    HttpServletRequest req;
-    HttpServletResponse resp;
-
-    public Rq(HttpServletRequest req, HttpServletResponse resp) {
-
-
-        this.req = req;
-        this.resp = resp;
-
-        try {
-            req.setCharacterEncoding("UTF-8");
-            resp.setCharacterEncoding("UTF-8");
-            resp.setContentType("text/html; charset=utf-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public int getIntParam(String parm, int value){
-        return Integer.parseInt(req.getParameter(parm));
-    }
-
-
-    public void appendBody(String formatted) {
-        try {
-            resp.getWriter().append(formatted);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
