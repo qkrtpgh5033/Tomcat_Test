@@ -1,5 +1,7 @@
 package com.ll.exam;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -44,6 +46,22 @@ public class Rq {
     public void appendBody(String formatted) {
         try {
             resp.getWriter().append(formatted);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setAttr(String name, Object value) {
+        req.setAttribute(name, value);
+    }
+
+    public void view(String path){
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp" + path + ".jsp");
+
+        try {
+            requestDispatcher.forward(req, resp);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
