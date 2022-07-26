@@ -9,12 +9,6 @@ import java.util.List;
 public class ArticleController {
 
     private ArticleService articleService = new ArticleService();
-    public void showList(Rq rq){
-        List<ArticleDto> lists = articleService.getList();
-
-        rq.setAttr("articles", lists);
-        rq.view("/usr/article/list");
-    }
 
     public void showWrite(Rq rq){
 
@@ -28,5 +22,21 @@ public class ArticleController {
         long id = articleService.write(title, body);
 
         rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
+    }
+
+    public void showList(Rq rq){
+        List<ArticleDto> lists = articleService.getList();
+
+        rq.setAttr("articles", lists);
+        rq.view("/usr/article/list");
+    }
+
+    public void showDetail(Rq rq) {
+        long id = 1;
+
+        ArticleDto findArticle = articleService.findById(id);
+
+        rq.setAttr("article", findArticle);
+        rq.view("/usr/article/detail");
     }
 }

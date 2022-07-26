@@ -10,6 +10,6 @@
 
 <ul>
     <% for ( ArticleDto article : articles ) { %>
-    <li><%=article.getId()%>. <%=article.getTitle()%></li>
+    <li><%=article.getTitle()%>. <%=article.getBody()%></li>
     <% } %>
 </ul>

@@ -6,6 +6,7 @@ public class ArticleDto {
     private String title;
     private String body;
 
+
     public ArticleDto(Long id, String title, String body) {
         this.id = id;
         this.title = title;

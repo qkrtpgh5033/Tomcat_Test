@@ -15,6 +15,7 @@ public class DispatchServlet extends HttpServlet {
 
     MemberController memberController = new MemberController();
     ArticleController articleController = new ArticleController();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Rq rq = new Rq(req, resp);
@@ -24,20 +25,21 @@ public class DispatchServlet extends HttpServlet {
          * /usr/article/list/free 부분만 가져온다.
          */
 
-        switch (rq.getMethod()) {
-                case "GET":
-                    switch (rq.getPath()) {
-                        case "/usr/article/list/free":
-                         articleController.showList(rq);
-                         break;
-                        case "/usr/member/login":
-                         memberController.showLogin(rq);
-                         break;
-                        case "/usr/article/write/free":
-                         articleController.showWrite(rq);
-                         break;
-                    }
+        switch (rq.getPath()) {
+            case "/usr/article/list":
+                articleController.showList(rq);
+                break;
+            case "/usr/article/detail":
+                articleController.showDetail(rq);
+                break;
+            case "/usr/article/write":
+                articleController.showWrite(rq);
+                break;
+            case "/usr/member/login":
+                memberController.showLogin(rq);
+                break;
         }
+
 
     }
 
@@ -46,10 +48,11 @@ public class DispatchServlet extends HttpServlet {
         Rq rq = new Rq(req, resp);
 
         switch (rq.getPath()) {
-            case "/usr/article/write/free":
+            case "/usr/article/write":
                 articleController.doWrite(rq);
                 break;
         }
-//        doGet(req, resp);
     }
+
+
 }
