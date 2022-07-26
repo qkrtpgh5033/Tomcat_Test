@@ -12,19 +12,17 @@ import java.io.IOException;
 
 @WebServlet("/usr/*")
 public class DispatchServlet extends HttpServlet {
+
+    MemberController memberController = new MemberController();
+    ArticleController articleController = new ArticleController();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Rq rq = new Rq(req, resp);
-
-        MemberController memberController = new MemberController();
-        ArticleController articleController = new ArticleController();
-
         /**
          * getRequestURI는
          * http://localhost:8081/usr/article/list/free?page=1 에서
          * /usr/article/list/free 부분만 가져온다.
          */
-
 
         switch (rq.getMethod()) {
                 case "GET":
@@ -39,21 +37,19 @@ public class DispatchServlet extends HttpServlet {
                          articleController.showWrite(rq);
                          break;
                     }
-            case "POST":
-                switch (rq.getPath()) {
-                    case "/usr/article/write/free":
-                        articleController.doWrite(rq);
-                        break;
-                }
-                break;
-
-
         }
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        Rq rq = new Rq(req, resp);
+
+        switch (rq.getPath()) {
+            case "/usr/article/write/free":
+                articleController.doWrite(rq);
+                break;
+        }
+//        doGet(req, resp);
     }
 }
