@@ -1,6 +1,7 @@
 package com.ll.exam.article;
 
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.article.dto.ArticleModifyDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,14 @@ public class ArticleRepository {
         ArticleDto findArticle = findById(id);
         if (findArticle != null) {
             datum.remove(findArticle);
+        }
+    }
+
+    public void articleModify(long id, ArticleModifyDto articleModifyDto) {
+        ArticleDto findArticle = findById(id);
+        if (findArticle != null) {
+            findArticle.setTitle(articleModifyDto.getTitle());
+            findArticle.setBody(articleModifyDto.getBody());
         }
     }
 }

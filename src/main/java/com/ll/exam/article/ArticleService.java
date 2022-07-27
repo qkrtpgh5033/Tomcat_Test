@@ -1,6 +1,7 @@
 package com.ll.exam.article;
 
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.article.dto.ArticleModifyDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,9 @@ public class ArticleService {
 
     public void articleDelete(long id) {
         articleRepository.articleDelete(id);
+    }
+
+    public void articleModify(long id, ArticleModifyDto articleModifyDto) {
+        articleRepository.articleModify(id, articleModifyDto);
     }
 }

@@ -2,6 +2,7 @@ package com.ll.exam.article;
 
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.article.dto.ArticleModifyDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +58,22 @@ public class ArticleController {
         }
         articleService.articleDelete(id);
 
+    }
+
+    public void doModify(Rq rq) {
+
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body", "");
+        ArticleModifyDto articleModifyDto = new ArticleModifyDto(title, body);
+        long id = rq.getLongPathValueByIndex(1, 0);
+        if( id == 0){
+            rq.appendBody("번호를 입력해주세요");
+            return;
+        }
+        articleService.articleModify(id, articleModifyDto);
+    }
+
+    public void showModify(Rq rq) {
+        rq.view("/usr/article/modify");
     }
 }
