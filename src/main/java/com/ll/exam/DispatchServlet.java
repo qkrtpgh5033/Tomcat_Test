@@ -25,7 +25,7 @@ public class DispatchServlet extends HttpServlet {
          * /usr/article/list/free 부분만 가져온다.
          */
 
-        switch (rq.getPath()) {
+        switch (rq.getActionPath()) {
             case "/usr/article/list":
                 articleController.showList(rq);
                 break;
@@ -47,7 +47,7 @@ public class DispatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Rq rq = new Rq(req, resp);
 
-        switch (rq.getPath()) {
+        switch (rq.getActionPath()) {
             case "/usr/article/write":
                 articleController.doWrite(rq);
                 break;

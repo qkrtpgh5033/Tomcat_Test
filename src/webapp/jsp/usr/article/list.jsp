@@ -10,6 +10,11 @@
 
 <ul>
     <% for ( ArticleDto article : articles ) { %>
-    <li><%=article.getTitle()%>. <%=article.getBody()%></li>
+    <li>
+        <a href="/usr/article/detail/free/<%=article.getId()%>"><%=article.getId()%>. <%=article.getTitle()%></a>
+        <input type="button" value="수정">
+        <input type="button" value="삭제">
+    </li>
     <% } %>
 </ul>
+
