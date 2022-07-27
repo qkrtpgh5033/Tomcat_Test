@@ -76,6 +76,8 @@ public class ArticleController {
             return;
         }
         articleService.articleModify(id, articleModifyDto);
+        rq.appendBody("<div>%d번 게시물이 수정되었습니다.</div>".formatted(id));
+        rq.appendBody("<div><a href=\"/usr/article/list/free\">리스트로 이동</a></div>");
     }
 
     public void showModify(Rq rq) {
