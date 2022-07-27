@@ -4,7 +4,7 @@
 
 
 <section>
-    <div class="container px-3 mx-auto">
+    <div class="container px-10 mx-auto">
         <h1 class="font-bold text-lg">게시물 리스트</h1>
 
         <ul class="mt-5">
