@@ -23,6 +23,7 @@ public class ArticleController {
         long id = articleService.write(title, body);
 
         rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
+        rq.appendBody("<div><a href=\"/usr/article/list/free\">리스트로 이동</a></div>");
     }
 
     public void showList(Rq rq){
@@ -57,6 +58,10 @@ public class ArticleController {
             return;
         }
         articleService.articleDelete(id);
+        rq.appendBody("<div>%d번 게시물이 삭제되었습니다.</div>".formatted(id));
+        rq.appendBody("<div><a href=\"/usr/article/list/free\">리스트로 이동</a></div>");
+
+
 
     }
 
