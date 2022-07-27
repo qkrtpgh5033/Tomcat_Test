@@ -74,6 +74,18 @@ public class ArticleController {
     }
 
     public void showModify(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        if( id == 0){
+            rq.appendBody("번호를 입력해주세요");
+            return;
+        }
+        ArticleDto findArticle = articleService.findById(id);
+
+        if (findArticle == null) {
+            rq.appendBody("해당 글이 존재하지 않습니다.");
+            return;
+        }
+        rq.setAttr("article", findArticle);
         rq.view("/usr/article/modify");
     }
 }
