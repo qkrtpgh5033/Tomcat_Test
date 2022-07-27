@@ -35,4 +35,11 @@ public class ArticleRepository {
         }
         return null;
     }
+
+    public void articleDelete(long id) {
+        ArticleDto findArticle = findById(id);
+        if (findArticle != null) {
+            datum.remove(findArticle);
+        }
+    }
 }
